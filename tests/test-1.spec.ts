@@ -1,0 +1,37 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  const randomUser = "user" + Date.now();
+  await page.goto('https://sipzofs.bits.bo/auth/login');
+  await page.getByRole('textbox', { name: 'Nombre usuario/correo' }).click();
+  await page.getByRole('textbox', { name: 'Nombre usuario/correo' }).fill('admin');
+  await page.getByRole('textbox', { name: 'Contraseña' }).click();
+  await page.getByRole('textbox', { name: 'Contraseña' }).fill('sample');
+  await page.getByRole('button', { name: 'Acceder' }).click();
+  await page.locator('a').filter({ hasText: /^Usuarios$/ }).click();
+  await page.getByRole('link', { name: ' Administración de usuarios' }).click();
+  await page.getByRole('button', { name: ' Agregar Usuario' }).click();
+  await page.getByRole('textbox', { name: 'Nombres' }).fill(randomUser);
+  await page.getByRole('textbox', { name: 'Apllido paterno' }).click();
+  await page.getByRole('textbox', { name: 'Apllido paterno' }).fill(randomUser);
+  await page.getByRole('textbox', { name: 'Apellido materno' }).click();
+  await page.getByRole('textbox', { name: 'Apellido materno' }).fill(randomUser);
+  await page.getByRole('textbox', { name: 'Dirección' }).click();
+  await page.getByRole('textbox', { name: 'Dirección' }).fill('ceja'+randomUser);
+  await page.getByRole('textbox', { name: 'Cédula de identidad' }).click();
+  await page.getByRole('textbox', { name: 'Cédula de identidad' }).fill(randomUser);
+  await page.getByRole('textbox', { name: 'Correo electrónico' }).click();
+  await page.getByRole('textbox', { name: 'Correo electrónico' }).fill(randomUser+'kk@illubd.com');
+  await page.getByRole('textbox', { name: 'Teléfono' }).click();
+  await page.getByRole('textbox', { name: 'Teléfono' }).fill(randomUser);
+  await page.locator('#idEntity').click();
+  await page.getByRole('listbox').waitFor();
+  await page.getByRole('option', { name: 'POFOMA' }).click();
+  await page.getByRole('textbox', { name: 'Nombre de usuario' }).click();
+  await page.getByRole('textbox', { name: 'Nombre de usuario' }).fill(randomUser);
+  await page.getByRole('textbox', { name: 'Cargo' }).click();
+  await page.getByRole('textbox', { name: 'Cargo' }).fill('Encargado');
+  await page.getByRole('combobox', { name: 'Seleccione un rol' }).click();
+  await page.getByRole('option', { name: 'Administrador' }).click();
+  //await page.getByRole('button', { name: ' Guardar' }).click();
+});
